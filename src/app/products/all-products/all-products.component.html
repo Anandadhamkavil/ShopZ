@@ -1,0 +1,75 @@
+<!-- Header-->
+
+
+<header class="bg-light py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-dark">
+            <img class="animate__animated animate__zoomInLeft" width="200px" src="https://media.istockphoto.com/id/938146020/vector/shopping-trolley-full-of-food.jpg?b=1&s=170667a&w=0&k=20&c=7nO1bhqVYHXSEi85LAzoYAE56rSDTrWLvP43tT5YcNw=" alt="">
+            <h1 class="display-4 fw-bolder">Shop in style</h1>
+
+        </div>
+    </div>
+</header>
+
+<!-- category card -->
+<div class="d-flex flex-row p-3 ">
+    <div class="card w-50 m-5 p-5 ">
+        <div class="card-body">
+            <a style="text-decoration: none;" (click)="filter('')" class="text-center">
+                <img width="130px" src="https://www.pngmart.com/files/11/Shopping-PNG-Photo.png" alt="">
+                <h6>All Products</h6>
+            </a>
+        </div>
+      </div>
+      <div class="card w-50 m-5 p-5">
+        <div class="card-body">
+            <a style="text-decoration: none;" (click)="filter('electronics')" class="text-center">
+                <img width="170px" height="130px" src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">
+                <h6>Electronics</h6>
+            </a>
+        </div>
+      </div>
+      <div class="card w-50 m-5 p-5 ">
+        <div class="card-body">
+            <a style="text-decoration: none;" (click)="filter('fashion')" class="text-center">
+                <img width="130px" height="100px" src="https://rukminim1.flixcart.com/flap/128/128/image/c12afc017e6f24cb.png?q=100" alt="">
+                <h6 >Fashions</h6>
+            </a>
+        </div>
+      </div>
+      <div class="card w-50 m-5 p-5">
+        <div class="card-body">
+            <a style="text-decoration: none;" (click)="filter('jewelery')" class="text-center">
+                <img  width="130px" height="100px" src="https://www.pngkey.com/png/detail/22-226837_gold-necklace-png-kolkata-design-gold-jewellery.png" alt="">
+                <h6>Jewllery</h6>
+            </a>
+        </div>
+      </div>
+</div>
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of filterCategory | filter : searchItem : 'title' ">
+                <div class="card h-100 p-3">
+                    <!-- Product image-->
+                    <img height="200px" class="card-img-top" [src]="product.image" alt="product.title" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h6 class="fw-bolder">{{product.title.slice(0,17)}}...</h6>
+                            <!-- Product price-->
+                            ${{product.price}}  
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" routerLink="view-product/{{product.id}}">View options</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

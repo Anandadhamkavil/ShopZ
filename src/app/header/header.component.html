@@ -1,0 +1,30 @@
+
+<nav class="navbar fixed-top bg-body-tertiary">
+    <div class="container-fluid bg-dark">
+        <a class="navbar-brand ms-5 me-5" routerLink="">
+            <img width="50px"  src="https://www.pngitem.com/pimgs/m/3-31745_shopping-cart-icon-blue-hd-png-download.png" alt="">&nbsp;
+            <span class="text-danger">S</span>hop<span class="text-danger">Z</span>
+        </a>    
+        <!-- <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon "></span>
+          </button> -->
+<!-- <div class="collapse navbar-collapse" id="navbarNavDropdown"> -->
+            <form class="d-flex " role="search">
+                <input (keyup)="search($event)" type="text" placeholder="search for products" class="form-control mb-3 mt-3">
+            <button class="btn btn-outline-primary me-4 ms-5 mb-3 mt-3" type="button" routerLink="login">
+               login
+            </button>
+            <button class="btn btn-outline-danger me-5 mb-3 mt-3" type="button" routerLink="products/wishlist">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+            <a class="btn btn-outline-success me-5 mb-3 mt-3" type="submit" routerLink="products/cart"><i
+                class="fa-solid fa-cart-shopping"></i>
+                <span class="badge bg-dark text-white ms-1 rounded-pill">{{cartItemCount}}</span>
+            </a>
+            </form>
+<!-- </div> -->
+    </div>
+  </nav>
+
+
+

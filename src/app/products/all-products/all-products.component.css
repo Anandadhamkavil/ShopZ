@@ -1,0 +1,11 @@
+.card-img-top{
+    transition: 2s;
+}
+
+.card-img-top:hover{
+    transform: scale(1.1);
+    transition: 2s;
+}
+.fw-bolder:hover{
+    color: maroon;
+}

@@ -1,0 +1,163 @@
+<!-- empty cart -->
+<div *ngIf="cartItems.length==0" class="container mt-5 mb-5">
+    <div class="row mt-5">
+      <div class="col mt-5 text-center">
+        <img height="300px" src="https://cdn.dribbble.com/users/12601/screenshots/3554804/gif.gif" alt="">
+        <h3 class="text-light mt-4">Your Cart is empty</h3>
+        <button routerLink="/products" class="btn btn-info">Shop More</button>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <section *ngIf="cartItems.length!=0" class="h-100 h-custom" style="background-color: #fff;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 mt-5 pt-5">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <span class="text-dark ms-1 rounded-pill">{{cartItemCount}} item</span>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a class="btn btn-danger" (click)="removeCart()"><i class="fas fa-times"></i></a>
+                      </div>
+                    </div>
+                    <hr class="my-4">
+  
+                    <div class="row mb-4 d-flex justify-content-between align-items-center"
+                      *ngFor="let product of cartItems">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img [src]="product.image" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-black mb-0">{{product.title}}</h6>
+                      </div>
+
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">${{product.price}}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a class="text-danger" (click)="removeItem(product)"><i class="fas fa-times"></i></a>
+                      </div>
+                    </div>
+  
+                    <hr class="my-4">
+  
+  
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a class="text-body" routerLink="/products/game"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Total Price:</h5>
+                      <h5>${{grandTotal}}</h5>
+                    </div>
+  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">Discount:</h5>
+                      <h5>${{discount}}</h5>
+                    </div>
+  
+  
+                    <h5 class="btn btn-link text-uppercase mb-3" style="text-decoration: none;" data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"><i class="fa-solid fa-tag"></i> Offers</h5>
+  
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Grand Total price:</h5>
+                      <h5>${{discountTotal}}</h5>
+                    </div>
+  
+                    <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark"
+                      (click)="checkout()" data-bs-toggle="modal" data-bs-target="#checkout">CheckOut</button>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  <!-- offer model design -->
+  <!-- Button trigger modal -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel"><i class="fa-solid fa-tag"></i> Coupons</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="grandTotal>0 && grandTotal<10" class="d-flex aligm-items-center">
+            <h4 style="font-size: 1em;">*All Users can apply*</h4>
+            <img (click)="discount3percent()" data-bs-dismiss="modal" width="100px"
+              src="https://t3.ftcdn.net/jpg/02/81/86/16/360_F_281861614_1KkCBtk8ffXPDy086pFctEnNFuA9bQKS.jpg" alt="3%"
+              class="me-auto">
+          </div>
+          <div *ngIf="grandTotal>=10 && grandTotal<=100" class="d-flex aligm-items-center">
+            <img (click)="discount10percent()" data-bs-dismiss="modal" width="100px"
+              src="https://www.vhv.rs/dpng/d/434-4342453_10-off-png-transparent-10-discount-png-png.png" alt="10%"
+              class="me-auto">
+            <h4 style="font-size: 1em;">*Special Offers*</h4>
+          </div>
+          <div *ngIf="grandTotal>100" class="d-flex aligm-items-center">
+            <img (click)="discount50percent()" data-bs-dismiss="modal" width="100px"
+              src="https://w7.pngwing.com/pngs/144/962/png-transparent-coupon-discounts-and-allowances-graphy-price-promo-miscellaneous-text-logo.png"
+              alt="50%" class="me-auto">
+            <h4 style="font-size: 1em;">*Special Offers*</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- checkout model design -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="checkout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="text-center">
+            <img width="100px" src="http://craftizen.org/wp-content/uploads/2019/02/successful_payment_388054.png" alt="">
+            <h2 class="text-success">Thank You!</h2>
+            <p>Successfully Placed your order</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <!-- <tr *ngFor="let product of cartItems; let i=index">
+    <th>
+        {{i+1}}
+    </th> -->
